@@ -1,16 +1,17 @@
 /*
  * @Date: 2019-09-11 15:49:48
  * @LastEditors: xieminhui
- * @LastEditTime: 2019-09-11 17:33:00
+ * @LastEditTime: 2019-09-12 11:30:06
  */
 const fs = require('fs');
 const path = require('path');
 const babylon = require('babylon');
 const traverse = require('babel-traverse').default;
 const {
-  tranformFromAst
+  transformFromAst
 } = require('babel-core')
 
+let ID = 0;
 
 /**
  * @description: 生成ast语法树
@@ -35,7 +36,7 @@ function createAsset(filename) {
   const id = ID++;
   const {
     code
-  } = tranformFromAst(ast, null, {
+  } = transformFromAst(ast, null, {
     presets: ['env']
   })
   const customCode = loader(filename, code)
@@ -91,7 +92,7 @@ function bundle(graph) {
   graph.forEach(mod => {
     modules += `${mod.id}: [
       function (require, module, exports) {
-        ${mode.code}
+        ${mod.code}
       },
       ${JSON.stringify(mod.mapping)},
     ],`;
@@ -116,3 +117,8 @@ function bundle(graph) {
   ;`
   return result;
 }
+
+debugger;
+const graph = createGraph('./src/js/index.js');
+const result = bundle(graph);
+console.log(result);
