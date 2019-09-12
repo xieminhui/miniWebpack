@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-12 11:32:49
  * @LastEditors: xieminhui
- * @LastEditTime: 2019-09-12 11:32:49
+ * @LastEditTime: 2019-09-12 15:09:34
  */
 (function (modules) {
   function require(id) {
@@ -16,7 +16,7 @@
     };
     fn(localRequire, module, module.exports);
 
-    return modules.exports;
+    return module.exports;
   }
 
   require(0);

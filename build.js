@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-11 15:49:48
  * @LastEditors: xieminhui
- * @LastEditTime: 2019-09-12 11:30:06
+ * @LastEditTime: 2019-09-12 15:10:02
  */
 const fs = require('fs');
 const path = require('path');
@@ -109,7 +109,7 @@ function bundle(graph) {
       const module = { exports: {} };
       fn(localRequire, module, module.exports);
 
-      return modules.exports;
+      return module.exports;
     }
     
     require(0);
