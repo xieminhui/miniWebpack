@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-11 15:49:48
  * @LastEditors: xieminhui
- * @LastEditTime: 2019-09-12 15:10:02
+ * @LastEditTime: 2019-11-13 15:41:34
  */
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +20,9 @@ let ID = 0;
  */
 function createAsset(filename) {
   const content = fs.readFileSync(filename, 'utf-8');
+  // loader
+  const customCode = loader(filename, content)
+
   // 生成ast语法树
   const ast = babylon.parse(content, {
     sourceType: 'module'
@@ -39,7 +42,6 @@ function createAsset(filename) {
   } = transformFromAst(ast, null, {
     presets: ['env']
   })
-  const customCode = loader(filename, code)
   return {
     id,
     filename,
@@ -121,4 +123,3 @@ function bundle(graph) {
 debugger;
 const graph = createGraph('./src/js/index.js');
 const result = bundle(graph);
-console.log(result);
