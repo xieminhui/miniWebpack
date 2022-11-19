@@ -30,6 +30,6 @@
   "homepage": "https://github.com/xieminhui/miniWebpack#readme",
   "devDependencies": {
     "lifecycle-webpack-plugin": "^1.0.13",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.12"
   }
 }
